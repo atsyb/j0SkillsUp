@@ -18,14 +18,14 @@ public class Calculation {
         String result = "!not picked up the roots!";
         int root1;
         int root2 = -Math.abs(memberP);
-        for (int x1 = -Math.abs(memberP); x1 < Math.abs(memberP) + 1; x1++) {
-            root1 = x1;
+        for (int numberForSelectionX1 = -Math.abs(memberP); numberForSelectionX1 < Math.abs(memberP) + 1; numberForSelectionX1++) {
+            root1 = numberForSelectionX1;
             if (root1 * root2 == memberQ & root1 + root2 == -memberP) {
                 result = "x1 = " + root1 + "\n" + "x2 = " + root2;
                 break;
             } else {
-                for (int x2 = -Math.abs(memberP); x2 < Math.abs(memberP) + 1; x2++) {
-                    root2 = x2;
+                for (int numberForSelectionX2 = -Math.abs(memberP); numberForSelectionX2 < Math.abs(memberP) + 1; numberForSelectionX2++) {
+                    root2 = numberForSelectionX2;
                     if (root1 * root2 == memberQ & root1 + root2 == -memberP) {
                         result = "x1 = " + root1 + "\n" + "x2 = " + root2;
                         break;
@@ -45,22 +45,18 @@ public class Calculation {
     }
 
     void printMultiplicationTable() {
-        int i, j;
-        System.out.printf("   │");
-        for (i = 1; i < 11; i++)
-            System.out.printf("%2d ", i);
-        System.out.printf("\n───┼——————————————————\n");
-        for (i = 1; i < 11; i++) {
-            System.out.printf("%2d │", i);
-            for (j = 1; j < 11; j++)
-                System.out.printf("%2d ", i * j);
+        int firstNumber, secondNumber;
+        for (firstNumber = 1; firstNumber < 11; firstNumber++){
+            for (secondNumber = 1; secondNumber < 11; secondNumber++) {
+                System.out.printf("%2d *%2d=%2d  ",firstNumber,secondNumber, firstNumber * secondNumber);
+            }
             System.out.printf("\n");
         }
     }
 
     void drawHerringbone(int count) {
-        for (int i = 0; i < count; ++i) {
-            for (int j = 0; j < i; ++j) {
+        for (int numberI = 0; numberI < count; ++numberI) {
+            for (int numberJ = 0; numberJ < numberI; ++numberJ) {
                 System.out.print("*");
             }
             System.out.println();
@@ -68,8 +64,8 @@ public class Calculation {
     }
 
     void drawHerringboneBack(int count) {
-        for (int i = 0; i < count; ++i) {
-            for (int j = 0; j < count - i; ++j) {
+        for (int numberIBack = 0; numberIBack < count; ++numberIBack) {
+            for (int numberJBack = 0; numberJBack < count - numberIBack; ++numberJBack) {
                 System.out.print("*");
             }
             System.out.println();

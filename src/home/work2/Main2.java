@@ -7,7 +7,7 @@ public class Main2 {
         System.out.println("__SkillsUp:HomeWork2__\n");
         Scanner scanner = new Scanner(System.in);
         Calculation calc = new Calculation();
-
+/*
         System.out.println("   Exercise #1 Calculate the roots of a square trinomial of the form:\n   ax^2+bx+c=0 (ByDiscriminant)");
         System.out.println("Enter a:");
         int numberA = scanner.nextInt();
@@ -61,5 +61,8 @@ public class Main2 {
 
         System.out.println("   Exercise #10 Even numbers in the specified range");
         calc.PrintEvenNumbers(numberFrom, numberTo);
+*/
+        calc.printMultiplicationTable();
+
     }
 }
