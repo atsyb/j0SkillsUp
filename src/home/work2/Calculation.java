@@ -1,5 +1,7 @@
 package home.work2;
 
+import java.util.Scanner;
+
 public class Calculation {
     void calculateRootsByDiscriminant(int memberA, int memberB, int memberC) {
         double discriminant = (Math.pow(memberB, 2) - 4 * memberA * memberC);
@@ -46,9 +48,9 @@ public class Calculation {
 
     void printMultiplicationTable() {
         int firstNumber, secondNumber;
-        for (firstNumber = 1; firstNumber < 11; firstNumber++){
+        for (firstNumber = 1; firstNumber < 11; firstNumber++) {
             for (secondNumber = 1; secondNumber < 11; secondNumber++) {
-                System.out.printf("%2d *%2d=%2d  ",firstNumber,secondNumber, firstNumber * secondNumber);
+                System.out.printf("%2d *%2d=%2d  ", firstNumber, secondNumber, firstNumber * secondNumber);
             }
             System.out.printf("\n");
         }
@@ -116,6 +118,16 @@ public class Calculation {
             }
         }
         return result;
+    }
+
+    void checkNumberInLottery() {
+        int randomNumber = (int) (Math.random() * 20) + 1;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("The lottery ticket dropped the number: " + randomNumber);
+        do {
+            System.out.print("Guess the number: ");
+        } while (scanner.nextInt() != randomNumber);
+        System.out.print("Victory!");
     }
 
     void PrintOddNumbers(int fromNumber, int toNumber) {
