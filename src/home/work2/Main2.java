@@ -42,14 +42,7 @@ public class Main2 {
         System.out.println(calc.displayTimeOfDay(numberHour));
 
         System.out.println("   Exercise #8 Lottery ticket");
-        {
-            int randomNumber = (int) (Math.random() * 20) + 1;
-            System.out.println("The lottery ticket dropped the number: " + randomNumber);
-            do {
-                System.out.print("Guess the number: ");
-            } while (scanner.nextInt() != randomNumber);
-            System.out.print("Victory!");
-        }
+        calc.checkNumberInLottery();
 
         System.out.println("   Exercise #9 Odd numbers in the specified range");
         System.out.println("Enter range from");
@@ -61,5 +54,6 @@ public class Main2 {
 
         System.out.println("   Exercise #10 Even numbers in the specified range");
         calc.PrintEvenNumbers(numberFrom, numberTo);
+
     }
 }
