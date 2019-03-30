@@ -101,4 +101,6 @@ public class Car extends Agregat {
                 ", amountOfFuel=" + amountOfFuel +
                 '}';
     }
+
+
 }

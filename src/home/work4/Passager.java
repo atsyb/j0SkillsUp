@@ -48,7 +48,6 @@ public class Passager {
                 ", agePassager=" + agePassager +
                 '}';
     }
-    //-------
 
     public void speaks(){
         System.out.println("Hi!");

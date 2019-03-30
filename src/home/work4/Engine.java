@@ -5,10 +5,13 @@ import java.util.Objects;
 public class Engine {
     private int speed;
     private int horsePower;
+    private boolean run;
 
     public Engine(int speed, int horsePower) {
         this.speed = speed;
         this.horsePower = horsePower;
+    }
+    public Engine(){
     }
 
     public int getSpeed() {
@@ -25,6 +28,14 @@ public class Engine {
 
     public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
+    }
+
+    public boolean isRun() {
+        return run;
+    }
+
+    public void setRun(boolean run) {
+        this.run = run;
     }
 
     @Override
@@ -49,12 +60,4 @@ public class Engine {
                 '}';
     }
 
-    //---------
-    public void start() {
-        System.out.println("Engine started");
-    }
-
-    public void stop() {
-        System.out.println("Engine stopped");
-    }
 }
