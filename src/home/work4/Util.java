@@ -4,25 +4,45 @@ import java.util.Random;
 
 public class Util {
     public Car sitInCar(Car car, Passager passager) {
-        if (car.getCapacity() > 1 && car.getCapacity() <= car.getPassagers().length) {
-            for (int countOfPass = 0; countOfPass < car.getPassagers().length; countOfPass++) {
-                if (car.getPassagers()[countOfPass] == null) {
-                    car.getPassagers()[countOfPass] = passager;
+        if (car.getCapacity() > 1 && car.getCapacity() >= car.getPassagers().length + 1) {
+            for (int countOfPlace = 0; countOfPlace < car.getPassagers().length; countOfPlace++) {
+                if (car.getPassagers()[countOfPlace] == null) {
+                    car.getPassagers()[countOfPlace] = passager;
+                    System.out.println(passager.getNamePassager() + " sat on the place #" + countOfPlace + " into car " + car.getMark());
                     break;
                 } else {
-                    System.out.println("Sorry our car this place is full");
+                    if (countOfPlace == car.getPassagers().length - 1) {
+                        System.out.println("Sorry our car " + car.getMark() + " this place is full");
+                    }
                 }
             }
+        } else {
+            System.out.println("In the car there are no empty seats! (there is a driver)");
         }
         return car;
     }
 
     public Car getOutOfCar(Car car, Passager passager) {
         for (int countOfPass = 0; countOfPass < car.getPassagers().length; countOfPass++) {
-            if (car.getPassagers()[countOfPass].equals(passager)) {
+            if (car.getPassagers()[countOfPass] != null && car.getPassagers()[countOfPass].equals(passager)) {
                 car.getPassagers()[countOfPass] = null;
-                System.out.println("This place of passangers is free.");
+                System.out.println(passager.getNamePassager() + " got out of car. Place #" + countOfPass + " was freed.");
+                break;
+            } else {
+                if (countOfPass == car.getPassagers().length - 1) {
+                    System.out.println(passager.getNamePassager() + " is not in the car :(");
+                }
             }
+        }
+        return car;
+    }
+
+    public Car getOutOfCar(Car car, int passengerNumber) {
+        if (car.getPassagers().length > passengerNumber && car.getPassagers()[passengerNumber] != null) {
+            System.out.println(car.getPassagers()[passengerNumber].getNamePassager() + " got out of car. Place #" + passengerNumber + " was freed.");
+            car.getPassagers()[passengerNumber] = null;
+        } else {
+            System.out.println("Place #" + passengerNumber + " was not taken");
         }
         return car;
     }
@@ -55,16 +75,16 @@ public class Util {
         return passager;
     }
 
-    public boolean checkFuel(Car car) {
+    public int checkFuel(Car car) {
         Random rand = new Random();
         int distance = rand.nextInt(1000 + 1);
         double consumption = (double) car.getEngine().getHorsePower() / 1000 * (double) car.getEngine().getSpeed() * 0.2 / 10;
         if (consumption * distance < car.getAmountOfFuel()) {
-            System.out.println("We reach the destination");
-            return true;
+            System.out.println("You can go :-)");
+            return distance;
         } else {
-            System.out.println("There is not enough fuel");
-            return false;
+            System.out.println("There is not enough fuel on "+distance+" km");
+            return -1;
         }
     }
 
