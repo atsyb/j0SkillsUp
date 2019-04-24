@@ -33,6 +33,14 @@ public class Utility {
         }
     }
 
+    public void takeBribeForAllRada(Map<String, Party> rada) {
+        Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
+        for (Map.Entry<String, Party> dep : radaEntry) {
+            for (Deputy deputy : dep.getValue().getDeputyList()) {
+                    deputy.setBribeTaker(true);
+            }
+        }
+    }
 
     public void takeBribeAtRandomForParty(Party party) {
         List<Deputy> deputiesInParty = party.getDeputyList();
@@ -65,25 +73,29 @@ public class Utility {
                     iterator.remove();
                 }
             }
-            radaEntry.remove(removePartyBribe(rada));
         }
 
         if (rada.values().isEmpty()) {
-            System.out.println("Dissolution of the  Rada!!!");
+            System.out.println("Dissolution of the Rada!!!");
         }
     }
 
-    public Party removePartyBribe(Map<String, Party> rada) {
-        Party p = null;
-        Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
-        for (Map.Entry<String, Party> nameOfParty : radaEntry) {
-            List<Deputy> PartyForRemove = nameOfParty.getValue().getDeputyList();
-            if (PartyForRemove.isEmpty()) {
-                System.out.println("remove==" + nameOfParty.toString());
-                p = rada.get(PartyForRemove);
+    public void removePartyBribe(Map<String, Party> rada) {
+        Iterator<Map.Entry<String, Party>> iterator = rada.entrySet().iterator();
+        while (iterator.hasNext())
+        {
+            Map.Entry<String, Party> partyEntry = iterator.next();
+            if (partyEntry.getValue().getDeputyList().isEmpty())
+            iterator.remove();
+        }
+        for(String name: rada.keySet())
+        {
+            String key = name;
+            Party value = rada.get(name);
+            if (!value.getDeputyList().isEmpty()) {
+                System.out.println("::Survived::\n"+ key + " " + value);
             }
         }
-        return p;
     }
 
 

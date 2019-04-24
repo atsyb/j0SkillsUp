@@ -45,31 +45,17 @@ public class Main5 {
         rada.put("Oposition (Y)", partyY);
         rada.put("Nonpartisan (Z)", partyZ);
 //-----------
-
         u.takeBribe(rada, deputy1.getName());
         u.takeBribeAtRandomForRada(rada);
         u.takeBribeAtRandomForParty(partyX);
 
-        u.takeBribeAtRandomForParty(partyX);
-        u.takeBribeAtRandomForParty(partyX);
-        u.takeBribeAtRandomForParty(partyY);
-        u.takeBribeAtRandomForParty(partyY);
-        u.takeBribeAtRandomForParty(partyY);
-
         System.out.println(rada.toString());
         //System.out.println(partyX.toString());
-
         u.getDepBribe(rada);
-
         u.removeDeputyBribe(rada);
-
         System.out.println(rada.toString());
-
-        //u.removePartyBribe(rada);
-
-        System.out.println("\n\n\n___________"+rada.toString());
-
-
-
+        u.removePartyBribe(rada);
+        u.takeBribeForAllRada(rada);
+        System.out.println(rada.toString());
     }
 }
