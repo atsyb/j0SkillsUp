@@ -37,7 +37,7 @@ public class Utility {
         Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
         for (Map.Entry<String, Party> dep : radaEntry) {
             for (Deputy deputy : dep.getValue().getDeputyList()) {
-                    deputy.setBribeTaker(true);
+                deputy.setBribeTaker(true);
             }
         }
     }
@@ -67,12 +67,7 @@ public class Utility {
     public void removeDeputyBribe(Map<String, Party> rada) {
         Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
         for (Map.Entry<String, Party> dep : radaEntry) {
-            for (Iterator<Deputy> iterator = dep.getValue().getDeputyList().iterator(); iterator.hasNext(); ) {
-                Deputy deputy = iterator.next();
-                if (deputy.isBribeTaker()) {
-                    iterator.remove();
-                }
-            }
+            dep.getValue().getDeputyList().removeIf(Deputy::isBribeTaker);
         }
 
         if (rada.values().isEmpty()) {
@@ -82,20 +77,57 @@ public class Utility {
 
     public void removePartyBribe(Map<String, Party> rada) {
         Iterator<Map.Entry<String, Party>> iterator = rada.entrySet().iterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             Map.Entry<String, Party> partyEntry = iterator.next();
             if (partyEntry.getValue().getDeputyList().isEmpty())
-            iterator.remove();
+                iterator.remove();
         }
-        for(String name: rada.keySet())
-        {
+        for (String name : rada.keySet()) {
             String key = name;
             Party value = rada.get(name);
             if (!value.getDeputyList().isEmpty()) {
-                System.out.println("::Survived::\n"+ key + " " + value);
+                System.out.println("::Survived::\n" + key + " " + value);
             }
         }
+    }
+
+
+    public void removePartyIfAllDeputyBribe(Map<String, Party> rada) {
+        Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
+        for (Map.Entry<String, Party> nameOfDeputy : radaEntry) {
+            boolean flagPartyBribe = true;
+            for (Deputy deputy : nameOfDeputy.getValue().getDeputyList()) {
+                if (!deputy.isBribeTaker() & Objects.nonNull(deputy)) {
+                    flagPartyBribe = false;
+                    break;
+                }
+            }
+            if (flagPartyBribe) {
+                System.out.println(">>>For removing: " + nameOfDeputy.getKey());
+                radaEntry.remove(nameOfDeputy.getValue());
+            }
+        }
+        System.out.println(radaEntry.toString());
+    }
+
+    public void removePartyIfAllDeputyBribeIterator(Map<String, Party> rada) {
+        Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
+        Iterator<Map.Entry<String, Party>> iterator = radaEntry.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Party> partyEntry = iterator.next();
+            boolean flagPartyBribe = true;
+            for (Deputy deputy : partyEntry.getValue().getDeputyList()) {
+                if (!deputy.isBribeTaker()) {
+                    flagPartyBribe = false;
+                    break;
+                }
+            }
+            if (flagPartyBribe) {
+                System.out.println(">>>For removing: " + partyEntry.getKey());
+                iterator.remove();
+            }
+        }
+        System.out.println(radaEntry.toString());
     }
 
 
