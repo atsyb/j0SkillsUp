@@ -92,6 +92,14 @@ public class Utility {
     }
 
 
+    public void removeAllParty(Map<String, Party> rada) {
+        Set<String> keySet = rada.keySet();
+        for (String key : keySet) {
+            rada.remove(rada.get(key));
+        }
+        System.out.println("***" + rada.toString());
+    }
+
     public void removePartyIfAllDeputyBribe(Map<String, Party> rada) {
         Set<Map.Entry<String, Party>> radaEntry = rada.entrySet();
         for (Map.Entry<String, Party> nameOfDeputy : radaEntry) {
@@ -107,7 +115,7 @@ public class Utility {
                 radaEntry.remove(nameOfDeputy.getValue());
             }
         }
-        System.out.println(radaEntry.toString());
+        System.out.println("***((" +rada.toString());
     }
 
     public void removePartyIfAllDeputyBribeIterator(Map<String, Party> rada) {
@@ -127,7 +135,7 @@ public class Utility {
                 iterator.remove();
             }
         }
-        System.out.println(radaEntry.toString());
+        System.out.println(rada.toString());
     }
 
 
