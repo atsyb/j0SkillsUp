@@ -57,9 +57,10 @@ public class Main5 {
         //u.removePartyBribe(rada);
         //u.takeBribeForAllRada(rada);
         //u.removePartyIfAllDeputyBribeIterator(rada);
-        u.removePartyIfAllDeputyBribe(rada);
-        //u.removeAllParty(rada);
+        //u.removePartyIfAllDeputyBribe(rada);
+        u.removeAllParty(rada);
         System.out.println("_______Those who stayed__________");
-        System.out.println(rada.toString());
+        //System.out.println(rada.toString());
+        //System.out.println("---------"+u.removePartyIfAllAreBibeTakers(rada));
     }
 }

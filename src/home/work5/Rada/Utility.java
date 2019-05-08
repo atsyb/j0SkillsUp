@@ -94,10 +94,14 @@ public class Utility {
 
     public void removeAllParty(Map<String, Party> rada) {
         Set<String> keySet = rada.keySet();
+        List<String> partyArrayList = new ArrayList<>();
         for (String key : keySet) {
-            rada.remove(rada.get(key));
+            partyArrayList.add(key);
         }
-        System.out.println("***" + rada.toString());
+        for (String key : partyArrayList) {
+            rada.remove(key);
+        }
+        System.out.println("<<***>> " + rada.toString());
     }
 
     public void removePartyIfAllDeputyBribe(Map<String, Party> rada) {
@@ -115,7 +119,7 @@ public class Utility {
                 radaEntry.remove(nameOfDeputy.getValue());
             }
         }
-        System.out.println("***((" +rada.toString());
+        System.out.println("***((" + rada.toString());
     }
 
     public void removePartyIfAllDeputyBribeIterator(Map<String, Party> rada) {
@@ -136,6 +140,25 @@ public class Utility {
             }
         }
         System.out.println(rada.toString());
+    }
+
+
+    public Map<String, Party> removePartyIfAllAreBibeTakers(Map<String, Party> rada) {
+        Set<String> keys = rada.keySet();
+        List<String> partyNameWhereAllIsBribers = new ArrayList<>();
+        for (String key : keys) {
+            boolean inPartyIsAllBibered = rada.get(key)
+                    .getDeputyList()
+                    .stream()
+                    .allMatch(Deputy::isBribeTaker);
+            if (inPartyIsAllBibered) {
+                partyNameWhereAllIsBribers.add(key);
+            }
+        }
+        for (String key : partyNameWhereAllIsBribers) {
+            rada.remove(key);
+        }
+        return rada;
     }
 
 
