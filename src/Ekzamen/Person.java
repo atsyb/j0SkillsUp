@@ -36,4 +36,10 @@ public class Person {
                 "name='" + name + '\'' +
                 '}';
     }
+
+
+   public void displiay(){
+       System.out.println("Name: "+getName());
+
+    }
 }
